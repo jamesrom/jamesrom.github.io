@@ -57,6 +57,7 @@
 	<div class="container">
 		<div id="chart" class="col-md-12"></div>
 		<div id="stats">
+			<div>Started monitoring on: <span id="start"></span></div>
 			<div>Time Difference: <span id="lag"></span>ms</div>
 			<div>Participants: <span id="participants"></span></div>
 			<div>Resets: <span id="resets"></span></div>
@@ -78,6 +79,7 @@
 		var margins = {top: 30, bottom: 40, left: 30, right: 0};
 		var fmt = d3.format("0,000");
 		var fmtSeconds = d3.format(".3n");
+		var start = moment().format("YYYY-MM-DD HH:mm:ss");
 
 		function init() {
 			var h = $('#chart').height() - margins.top - margins.bottom;
@@ -138,6 +140,8 @@
 			sock.onmessage = tick;
 
 			$(window).on('resize', resize);
+
+			$('#start').text(start);
 		}
 
 		function flairColor(seconds) {
