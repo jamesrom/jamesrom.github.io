@@ -1,0 +1,72 @@
+html, body {
+	height: 100%;
+}
+
+#chart {
+	height: 100%;
+	padding: 0;
+}
+
+#chart g.axis path {
+	stroke: #6ea2d5;
+	stroke-width: 1;
+	fill: none;
+}
+
+#chart line.grid {
+	stroke: #DDD;
+	stroke-width: 1;
+	fill: none;
+}
+
+#stats {
+	position: absolute;
+	background-color: rgba(255, 255, 255, 0.75);
+	text-align: left;
+	font-size: 12px;
+	font-family: Consolas, monaco, monospace;
+	padding: 2px 6px;
+	margin-left: 4px;
+}
+
+#timer {
+	position: absolute;
+	background-color: rgba(255, 255, 255, 0.75);
+	text-align: left;
+	font-size: 48px;
+	font-family: Consolas, monaco, monospace;
+	padding: 0 16px;
+}
+
+.github {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: 0;
+}
+
+/* not used right now */
+.flair-no-press{
+	background:#888;
+	color:#888
+}
+.flair-press-1{
+	color:#e50000;
+	background:#e50000
+}
+.flair-press-2{
+	color:#e59500;
+	background:#e59500
+}
+.flair-press-3{
+	color:#E5D900;
+	background:#E5D900
+}
+.flair-press-4{
+	color:#02be01;
+	background:#02be01
+}
+.flair-press-5{
+	color:#0083C7;
+	background:#0083C7
+}
