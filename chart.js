@@ -117,10 +117,37 @@ var Chart = (function() {
 		axisScale.range([8, self.width() + 4]);
 		yScale.range([Chart.height(), 0]);
 
+		var grids = svg.selectAll("line.grid")
+			.data(yScale.ticks());
+
+		grids.attr({
+				'class': 'grid',
+				'x1' : 4,
+				'x2' : self.width(),
+				'y1' : yScale,
+				'y2' : yScale,
+				'shape-rendering' : 'crispEdges',
+			})
+
+		grids.enter()
+			.append("line")
+			.attr({
+				'class': 'grid',
+				'x1' : 4,
+				'x2' : self.width(),
+				'y1' : yScale,
+				'y2' : yScale,
+				'shape-rendering' : 'crispEdges',
+			});
+
+		grids.exit()
+			.remove();
+
 		svg.selectAll('g.x.axis')
 			.attr('transform', 'translate(-4,' + Chart.height() + ')')
 			.call(xAxis);
 		svg.selectAll('g.y.axis')
+			.attr('transform', 'translate(' + Chart.width() + ',0)')
 			.call(yAxis);
 	}
 
