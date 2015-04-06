@@ -36,4 +36,11 @@ function resize() {
 	Chart.resize();
 	Stats.resize();
 	Timer.resize();
+
+	if ($(window).width() < 900) {
+		$('.github').hide();
+	}
+	else {
+		$('.github').show();
+	}
 }
