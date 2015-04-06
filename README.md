@@ -1,4 +1,4 @@
-# tbm
+# The Button Monitor
 Monitor /r/thebutton. Built in a couple of hours over easter.
 
 Example:
