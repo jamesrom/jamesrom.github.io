@@ -1,6 +1,6 @@
 var Chart = (function() {
 	var self = {
-		margins: {top: 30, bottom: 40, left: 0, right: 30}
+		margins: {top: 30, bottom: 70, left: 0, right: 30}
 	};
 
 	self.height = function() {
@@ -113,6 +113,12 @@ var Chart = (function() {
 	}
 
 	self.resize = function() {
+		if ($(window).width() < 400) {
+			$('#chart').addClass('small');
+		}
+		else {
+			$('#chart').removeClass('small');
+		}
 		xScale.range([4, self.width()]);
 		axisScale.range([8, self.width() + 4]);
 		yScale.range([Chart.height(), 0]);

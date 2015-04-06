@@ -42,7 +42,17 @@ var Timer = (function() {
 	}
 
 	self.resize = function() {
+		if ($(window).width() < 400) {
+			$('#timer')
+				.addClass('small')
+				.css('left', $('#stats').offset().left)
+				.css('top', $('#stats').offset().top + $('#stats').outerHeight())
+				.css('line-height', '');
+			return;
+		}
+
 		$('#timer')
+			.removeClass('small')
 			.css('left', ($('#stats').offset().left + $('#stats').outerWidth()))
 			.css('top', Chart.margins.top)
 			.css('line-height', $('#stats').outerHeight() + 'px');

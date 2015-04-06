@@ -38,6 +38,10 @@ html, body {
 	padding: 0 16px;
 }
 
+#timer.small {
+	padding: 0;
+}
+
 .github {
 	position: absolute;
 	top: 0;
@@ -69,4 +73,27 @@ html, body {
 .flair-press-5{
 	color:#0083C7;
 	background:#0083C7
+}
+
+.footer {
+	position: absolute;
+	bottom: 16px;
+	width: 250px;
+}
+
+.footer.twitter {
+	left: 16px;
+}
+
+.footer.email {
+	display: block;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+
+.footer.web {
+	right: 20px;
+	text-align: right;
 }

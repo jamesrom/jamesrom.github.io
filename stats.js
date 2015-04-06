@@ -17,7 +17,11 @@ var Stats = (function() {
 	}
 
 	self.resize = function() {
+		if ($(window).width() < 400) {
+			$('#stats').addClass('small');
+		}
 		$('#stats')
+			.removeClass('small')
 			.css('left', ($('#chart').offset().left))
 			.css('top', Chart.margins.top);
 	}

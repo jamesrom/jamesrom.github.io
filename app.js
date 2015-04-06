@@ -37,10 +37,10 @@ function resize() {
 	Stats.resize();
 	Timer.resize();
 
-	if ($(window).width() < 900) {
-		$('.github').hide();
+	if ($(window).width() < 400) {
+		$('.footer.twitter, .footer.web').hide();
 	}
 	else {
-		$('.github').show();
+		$('.footer.twitter, .footer.web').show();
 	}
 }
