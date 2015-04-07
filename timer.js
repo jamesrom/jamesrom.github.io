@@ -13,14 +13,8 @@ var Timer = (function() {
 
 	self.sync = function(seconds_left) {
 		timerEnd = moment().add(seconds_left * 1000);
-		timerBar
-			.attr('x', function(d, i) {
-				return Chart.xScale(Stats.resets);
-			})
-			.attr('width', function(d, i) {
-				return Chart.xScale(Stats.resets) - Chart.xScale(Stats.resets - 1);
-			});
-
+		updateBar();
+		
 		if (!animating) {
 			animate();
 		}
@@ -57,6 +51,19 @@ var Timer = (function() {
 			.css('top', Chart.margins.top)
 			.css('line-height', $('#stats').outerHeight() + 'px');
 	}
+	
+	//Used to update timer bar externally when zooming/scrolling
+	function updateBar() {
+		timerBar
+			.attr('x', function(d, i) {
+				return Chart.xScale(Stats.resets);
+			})
+			.attr('width', function(d, i) {
+				return Chart.xScale(Stats.resets) - Chart.xScale(Stats.resets - 1);
+			});
+	}
+	
+	self.updateBar = updateBar;
 
 	return self;
 }());
