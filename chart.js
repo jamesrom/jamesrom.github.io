@@ -165,7 +165,7 @@ var Chart = (function() {
 
 	self.zoom = function(delta, pos) {
 		//Different zoom depending on level (accelerate zoom every time you zoom out by 50)
-		var v = delta * Math.floor(((Stats.resets || 0) - zoomLvl)/50) + delta;
+		var v = delta * Math.floor((Stats.resets - zoomLvl)/50) + delta;
 		
 		zoomLvl += v;
 		if (zoomLvl < 0) { zoomLvl = 0; }
