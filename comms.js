@@ -10,11 +10,10 @@ var Comms = (function() {
 		var websocketURL;
 		if (redditRequester.status === 200) {
 			var regex = /"(wss:\/\/wss\.redditmedia\.com\/thebutton\?h=[^"]*)"/g;
-			var websocketURL = regex.exec(redditRequester.responseText)[1];
+			websocketURL = regex.exec(redditRequester.responseText)[1];
 		}
-		else {
-			websocketURL = "wss://wss.redditmedia.com/thebutton?h=7f66bf82878e6151f7688ead7085eb63a0baff0b&e=1428621271";
-		}
+
+		websocketURL = websocketURL || "wss://wss.redditmedia.com/thebutton?h=7f66bf82878e6151f7688ead7085eb63a0baff0b&e=1428621271";
 		
 		console.log("Connecting to: " + websocketURL);
 		sock = new WebSocket(websocketURL);
