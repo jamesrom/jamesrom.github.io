@@ -9,6 +9,7 @@ var Timer = (function() {
 		.attr('y', 1)
 		.attr('width', 1)
 		.attr('height', 1)
+		.attr('fill', '#FFF')
 		.attr('shape-rendering', 'crispEdges');
 
 	self.sync = function(seconds_left) {

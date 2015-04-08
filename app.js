@@ -45,6 +45,7 @@ function resize() {
 	Chart.resize();
 	Stats.resize();
 	Timer.resize();
+	Comms.resize();
 
 	if ($(window).width() < 400) {
 		$('.footer.twitter, .footer.web').hide();

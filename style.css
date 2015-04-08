@@ -2,6 +2,21 @@ html, body {
 	height: 100%;
 }
 
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+#loading-indicator {
+	position: absolute;
+	padding-left: 6px;
+}
+
+#loading-indicator span {
+	-webkit-animation: spin 2s linear infinite;
+	-moz-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+}
+
 #chart {
 	height: 100%;
 	padding: 0;
@@ -27,6 +42,7 @@ html, body {
 	font-family: Consolas, monaco, monospace;
 	padding: 2px 6px;
 	margin-left: 4px;
+	display: none;
 }
 
 #timer {
