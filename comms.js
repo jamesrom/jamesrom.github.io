@@ -4,8 +4,11 @@ var Comms = (function() {
 	var redditRequester = new XMLHttpRequest();
 
 	redditRequester.onreadystatechange = function () {
+		if (redditRequester.readyState !== 4) {
+			return;
+		}
 		var websocketURL;
-		if (redditRequester.readyState === 4 && redditRequester.status === 200) {
+		if (redditRequester.status === 200) {
 			var regex = /"(wss:\/\/wss\.redditmedia\.com\/thebutton\?h=[^"]*)"/g;
 			var websocketURL = regex.exec(redditRequester.responseText)[1];
 		}
