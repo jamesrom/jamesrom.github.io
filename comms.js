@@ -1,6 +1,6 @@
 var Comms = (function() {
 	var self = {};
-	var sock = new WebSocket('wss://wss.redditmedia.com/thebutton?h=028c31feed150f7e2806cec3435f482e4c0e068c&e=1428514746');
+	var sock = new WebSocket('wss://wss.redditmedia.com/thebutton?h=499ae8c8a57596392baa463ca85c2590b2846fb1&e=1428606270');
 	sock.onmessage = tick;
 
 	function tick(evt) {
