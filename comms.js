@@ -4,15 +4,18 @@ var Comms = (function() {
 	var redditRequester = new XMLHttpRequest();
 
 	redditRequester.onreadystatechange = function () {
+		var websocketURL;
 		if (redditRequester.readyState === 4 && redditRequester.status === 200) {
 			var regex = /"(wss:\/\/wss\.redditmedia\.com\/thebutton\?h=[^"]*)"/g;
 			var websocketURL = regex.exec(redditRequester.responseText)[1];
-
-			console.log("Connecting to: " + websocketURL);
-			
-			sock = new WebSocket(websocketURL);
-			sock.onmessage = tick;
 		}
+		else {
+			websocketURL = "wss://wss.redditmedia.com/thebutton?h=7f66bf82878e6151f7688ead7085eb63a0baff0b&e=1428621271";
+		}
+		
+		console.log("Connecting to: " + websocketURL);
+		sock = new WebSocket(websocketURL);
+		sock.onmessage = tick;
 	};
 	// Use CORS proxy by lezed1 to get the Reddit homepage!
 	redditRequester.open("get", "//cors-unblocker.herokuapp.com/get?url=https%3A%2F%2Fwww.reddit.com%2Fr%2Fthebutton", true);
