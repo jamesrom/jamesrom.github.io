@@ -1,7 +1,22 @@
 var Comms = (function() {
 	var self = {};
-	var sock = new WebSocket('wss://wss.redditmedia.com/thebutton?h=499ae8c8a57596392baa463ca85c2590b2846fb1&e=1428606270');
-	sock.onmessage = tick;
+	var sock;
+	var redditRequester = new XMLHttpRequest();
+
+	redditRequester.onreadystatechange = function () {
+		if (redditRequester.readyState === 4 && redditRequester.status === 200) {
+			var regex = /"(wss:\/\/wss\.redditmedia\.com\/thebutton\?h=[^"]*)"/g;
+			var websocketURL = regex.exec(redditRequester.responseText)[1];
+
+			console.log("Connecting to: " + websocketURL);
+			
+			sock = new WebSocket(websocketURL);
+			sock.onmessage = tick;
+		}
+	};
+	// Use CORS proxy by lezed1 to get the Reddit homepage!
+	redditRequester.open("get", "//cors-unblocker.herokuapp.com/get?url=https%3A%2F%2Fwww.reddit.com%2Fr%2Fthebutton", true);
+	redditRequester.send();
 
 	function tick(evt) {
 		// {"type": "ticking", "payload": {"participants_text": "585,177", "tick_mac": "362a88a8ae0a89c909395f587e329992c656b4d8", "seconds_left": 59.0, "now_str": "2015-04-04-23-44-42"}}
