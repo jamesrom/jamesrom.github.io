@@ -4,4 +4,4 @@ Monitor /r/thebutton. Built in a couple of hours over easter.
 Visit [The Button Monitor](http://jamesrom.github.io)
 
 ## Screenshot
-![image](https://cloud.githubusercontent.com/assets/3196313/6997746/1e67fbc6-db96-11e4-9443-767a14905b7a.png)
+![screenshot](https://cloud.githubusercontent.com/assets/539129/7058293/d654afae-dea2-11e4-8ebe-ed333a6dc999.png)
