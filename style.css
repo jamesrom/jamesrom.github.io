@@ -57,10 +57,12 @@ html, body {
 	font-size: 48px;
 	font-family: Consolas, monaco, monospace;
 	padding: 0 16px;
+	margin-top: -15px;
 }
 
 #timer.small {
 	padding: 0;
+	margin-top: 0;
 }
 
 .github {
@@ -145,4 +147,28 @@ html, body {
 	box-shadow: -2px 2px 2px -1px rgba(0, 0, 0, 0.5);
 	padding: 0;
 	margin: 0;
+}
+
+#red-stats {
+	color:#E50000;
+}
+
+#orange-stats {
+	color:#E59500;
+}
+
+#yellow-stats {
+	color:#E5D900;
+}
+
+#green-stats {
+	color:#02BE01;
+}
+
+#blue-stats {
+	color:#0083C7;
+}
+
+#purple-stats {
+	color:#820080;
 }
