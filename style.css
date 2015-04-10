@@ -57,10 +57,12 @@ html, body {
 	font-size: 48px;
 	font-family: Consolas, monaco, monospace;
 	padding: 0 16px;
+	margin-top: -15px;
 }
 
 #timer.small {
 	padding: 0;
+	margin-top: 0;
 }
 
 .github {

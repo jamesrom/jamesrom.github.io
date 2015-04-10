@@ -42,16 +42,14 @@ var Timer = (function() {
 			$('#timer')
 				.addClass('small')
 				.css('left', $('#stats').offset().left)
-				.css('top', $('#stats').offset().top + $('#stats').outerHeight())
-				.css('line-height', '');
+				.css('top', $('#stats').offset().top + $('#stats').outerHeight());
 			return;
 		}
 
 		$('#timer')
 			.removeClass('small')
 			.css('left', ($('#stats').offset().left + $('#stats').outerWidth()))
-			.css('top', Chart.margins.top)
-			.css('line-height', $('#stats').outerHeight() + 'px');
+			.css('top', Chart.margins.top - 4);
 	}
 	
 	//Used to update timer bar externally when zooming/scrolling

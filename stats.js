@@ -44,7 +44,7 @@ var Stats = (function() {
 		$('#stats')
 			.removeClass('small')
 			.css('left', ($('#chart').offset().left))
-			.css('top', Chart.margins.top);
+			.css('top', Chart.margins.top - 4);
 	}
 
 	return self;
