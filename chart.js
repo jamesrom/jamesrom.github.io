@@ -43,7 +43,7 @@ var Chart = (function() {
 		.html(function(d) {
 			return '<div>Seconds Left: ' + d.seconds_left + '</div>'
 				+ '<div>Time Stamp: ' + d.now.format("YYYY-MM-DD HH:mm:ss") + '</div>'
-				+ '<div>Clicks: ' + d.clickers + '</div>';
+				+ '<div>Clicks: ' + d.clicks + '</div>';
 		});
 	
 	var zoomLvl = 0;

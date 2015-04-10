@@ -45,7 +45,8 @@ var Comms = (function() {
 		var last = _.last(data);
 		if (data.length > 0 && packet.payload.seconds_left >= last.seconds_left) {
 			last.is_click = true;
-			last.clickers = packet.payload.participants - last.participants;
+			last.clicks = packet.payload.participants - last.participants;
+			Stats.clicks += last.clicks;
 		}
 		data.push(packet.payload);
 		Stats.ticks = fmt(data.length);

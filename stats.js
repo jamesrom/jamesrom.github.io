@@ -1,6 +1,7 @@
 var Stats = (function() {
 	var self = {};
 
+	self.clicks = 0;
 	self.resets = 0;
 	
 	self.render = function() {
