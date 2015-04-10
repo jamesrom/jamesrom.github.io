@@ -41,7 +41,6 @@ var Chart = (function() {
 		.attr('class', 'tooltip')
 		.offset([-12, 0])
 		.html(function(d) {
-			//{"participants_text":"683,495","tick_mac":"5ea176ff68c5d74008f948a9509a1a50acf73b5f","seconds_left":39,"now_str":"2015-04-10-09-23-59","now":"2015-04-10T09:23:59.000Z","is_click":true}
 			return '<div>Seconds Left: ' + d.seconds_left + '</div>'
 				+ '<div>Time Stamp: ' + d.now.format("YYYY-MM-DD HH:mm:ss") + '</div>'
 				+ '<div>Clicks: ' + d.clickers + '</div>';

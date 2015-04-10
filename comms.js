@@ -1,6 +1,7 @@
 var Comms = (function() {
 	var self = {};
 	var sock;
+	var fmt = d3.format("0,000");
 
 	$('#loading-indicator').show();
 
@@ -39,12 +40,14 @@ var Comms = (function() {
 
 		packet.payload.now = moment(packet.payload.now_str + " 0000", "YYYY-MM-DD-HH-mm-ss Z");
 		Stats.lag = d3.format("0,000")(packet.payload.now - moment());
+		packet.payload.participants = parseInt(packet.payload.participants_text.replace(/[^0-9]/g, ''))
 
-		if (data.length > 0 && packet.payload.seconds_left >= _.last(data).seconds_left) {
-			_.last(data).is_click = true;
+		var last = _.last(data);
+		if (data.length > 0 && packet.payload.seconds_left >= last.seconds_left) {
+			last.is_click = true;
+			last.clickers = packet.payload.participants - last.participants;
 		}
 		data.push(packet.payload);
-		$('#resets').text(fmt(clicks.length));
 		Stats.ticks = fmt(data.length);
 		Stats.participants = packet.payload.participants_text;
 
@@ -55,8 +58,8 @@ var Comms = (function() {
 
 	self.resize = function() {
 		$('#loading-indicator')
-			.css('left', ($('#chart').offset().left))
-			.css('top', Chart.margins.top);
+			.css('left', ($(window).width() - $('#loading-indicator').width()) / 2)
+			.css('top', ($(window).height() - $('#loading-indicator').height()) * (1/3));
 	}
 
 	return self;
