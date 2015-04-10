@@ -36,6 +36,16 @@ var Chart = (function() {
 	var yAxis = d3.svg.axis()
 		.scale(yScale)
 		.orient('right');
+
+	var tip = d3.tip()
+		.attr('class', 'tooltip')
+		.offset([-12, 0])
+		.html(function(d) {
+			//{"participants_text":"683,495","tick_mac":"5ea176ff68c5d74008f948a9509a1a50acf73b5f","seconds_left":39,"now_str":"2015-04-10-09-23-59","now":"2015-04-10T09:23:59.000Z","is_click":true}
+			return '<div>Seconds Left: ' + d.seconds_left + '</div>'
+				+ '<div>Time Stamp: ' + d.now.format("YYYY-MM-DD HH:mm:ss") + '</div>'
+				+ '<div>Clicks: ' + d.clickers + '</div>';
+		});
 	
 	var zoomLvl = 0;
 	var scrollLvl = 0;
@@ -71,6 +81,8 @@ var Chart = (function() {
 
 	svg.selectAll('g.y.axis')
 		.call(yAxis);
+
+	svg.call(tip);
 
 	// expose
 	self.svg = svg;
@@ -117,7 +129,9 @@ var Chart = (function() {
 			.attr('height', function(d, i) {
 				return yScale(60) - yPixel(d)
 			})
-			.attr('fill', flair);
+			.attr('fill', flair)
+			.on('mouseover', tip.show)
+      .on('mouseout', tip.hide);
 
 		rect.exit()
 			.remove();
