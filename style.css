@@ -146,3 +146,12 @@ html, body {
 	padding: 0;
 	margin: 0;
 }
+
+/* settings */
+
+#settings {
+	position: absolute;
+	z-index: 1000;
+	display: none;
+}
+

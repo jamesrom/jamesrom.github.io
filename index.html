@@ -15,6 +15,36 @@
 	<div id="loading-indicator">
 		<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Connecting...
 	</div>
+
+	<div id="settings" class="container">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Settings</h3>
+		  </div>
+		  <div class="panel-body">
+				<label for="sma-radio">Simple Moving Average</label>
+				<div id="sma-radio" class="form-group">
+					<label class="radio-inline">
+					  <input type="radio" name="sma" value="none"> None
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="sma" value="10"> 10 Samples
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="sma" value="25"> 25 Samples
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="sma" value="50"> 50 Samples
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="sma" value="100"> 100 Samples
+					</label>
+				</div>
+				<button class="btn btn-primary pull-right">Close</button>
+		  </div>
+		</div>
+	</div>
+
 	<div class="container-fluid">
 		<div id="chart" class="col-md-12"></div>
 		<div id="stats">
@@ -27,6 +57,7 @@
 		</div>
 		<div id="timer">
 		</div>
+
 		<div class="footer twitter">
 			Follow <a href="http://twitter.com/jamesrom">@jamesrom</a>
 		</div>
@@ -52,6 +83,7 @@
 	<script src="chart.js"></script>
 	<script src="timer.js"></script>
 	<script src="stats.js"></script>
+	<script src="settings.js"></script>
 	<script>
 		$(init);
 	</script>
