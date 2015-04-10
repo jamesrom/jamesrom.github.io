@@ -10,7 +10,7 @@ var Stats = (function() {
 				return key != "render" && key != "resize";
 			})
 			.each(function(key, i) {
-				$('#' + key).text(self[key]);
+				$('#stats .' + key).text(self[key]);
 			})
 			.value();
 
