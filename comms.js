@@ -47,11 +47,52 @@ var Comms = (function() {
 			last.is_click = true;
 			last.clicks = packet.payload.participants - last.participants;
 			Stats.clicks += last.clicks;
+
+			var total_resets = _.filter(data, 'is_click').length;
+			var last_time = _.last(data).seconds_left;
+			// Update color stats
+			if (last_time <= 11) {
+				Stats.total_reds += 1;
+			}
+			else if (last_time <= 21) {
+				Stats.total_oranges += 1;
+			}
+			else if (last_time <= 31) {
+				Stats.total_yellows += 1;
+			}
+			else if (last_time <= 41) {
+				Stats.total_greens += 1;
+			}
+			else if (last_time <= 51) {
+				Stats.total_blues += 1;
+			}
+			else if (last_time <= 60) {
+				Stats.total_purples += 1;
+			}
+
+			// Update percentages
+			Stats.purple_percentage = "(" + (100.0 * Stats.total_purples / total_resets).toFixed(3) + "%)";
+			Stats.blue_percentage = "(" + (100.0 * Stats.total_blues / total_resets).toFixed(3) + "%)";
+			Stats.green_percentage = "(" + (100.0 * Stats.total_greens / total_resets).toFixed(3) + "%)";
+			Stats.yellow_percentage = "(" + (100.0 * Stats.total_yellows / total_resets).toFixed(3) + "%)";
+			Stats.orange_percentage = "(" + (100.0 * Stats.total_oranges / total_resets).toFixed(3) + "%)";
+			Stats.red_percentage = "(" + (100.0 * Stats.total_reds / total_resets).toFixed(3) + "%)";
+
+			// Update lowest time if needed
+			if (Stats.lowest_time > last_time) {
+				Stats.lowest_time = last_time;
+			}
+
+			// Update average time
+			Stats.sum_of_times += last_time;
+			Stats.average_time = (1.0 * Stats.sum_of_times / total_resets).toFixed(3);
+
+			// Resets per minute
+			Stats.resets_per_minute = (60.0 * total_resets / data.length).toFixed(3);
 		}
 		data.push(packet.payload);
 		Stats.ticks = fmt(data.length);
 		Stats.participants = packet.payload.participants_text;
-
 		Chart.render(data);
 		Timer.sync(packet.payload.seconds_left);
 		Stats.render();
