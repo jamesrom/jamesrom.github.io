@@ -1,6 +1,7 @@
 var Timer = (function() {
 	var self = {};
 	var fmtSeconds = d3.format(".3n");
+	var animating;
 	
 	var timerEnd;
 	var timerBar = Chart.svg.append('rect')

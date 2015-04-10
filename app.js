@@ -1,10 +1,5 @@
 var data = [];
-var clicks = [];
-var chart, xScale, yScale, xAxis, yAxis, axisScale;
 var mouseX;
-var timerBar, animating = false;
-var sock;
-var fmt = d3.format("0,000");
 
 //Function to move components to front from D3
 d3.selection.prototype.moveToFront = function() {
