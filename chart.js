@@ -35,7 +35,8 @@ var Chart = (function() {
 
 	var yAxis = d3.svg.axis()
 		.scale(yScale)
-		.orient('right');
+		.orient('right')
+		.tickValues([60, 51, 41, 31, 21, 11, 0]);
 
 	var tip = d3.tip()
 		.attr('class', 'tooltip')
@@ -49,7 +50,7 @@ var Chart = (function() {
 	var zoomLvl = 0;
 	var scrollLvl = 0;
 
-	svg.selectAll("line.grid").data(yScale.ticks()).enter()
+	svg.selectAll("line.grid").data(yAxis.tickValues()).enter()
 		.append("line")
 		.attr({
 			'class': 'grid',
@@ -58,7 +59,14 @@ var Chart = (function() {
 			'y1' : yScale,
 			'y2' : yScale,
 			'shape-rendering' : 'crispEdges',
-		});
+		})
+		.attr("stroke", function (d) {
+			switch (d) {
+				case 60: return "#6ea2d5";
+				case 0: return "#6ea2d5";
+				default: return flairColor(d);
+			}
+		})
 
 	svg.append('g')
 		.attr('class', 'x axis')
@@ -130,7 +138,7 @@ var Chart = (function() {
 			})
 			.attr('fill', flair)
 			.on('mouseover', tip.show)
-      .on('mouseout', tip.hide);
+			.on('mouseout', tip.hide);
 
 		rect.exit()
 			.remove();
@@ -151,7 +159,7 @@ var Chart = (function() {
 		yScale.range([Chart.height(), 0]);
 
 		var grids = svg.selectAll("line.grid")
-			.data(yScale.ticks());
+			.data(yAxis.tickValues());
 
 		grids.attr({
 				'class': 'grid',

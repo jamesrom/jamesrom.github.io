@@ -34,7 +34,6 @@ html, body {
 }
 
 #chart line.grid {
-	stroke: #DDD;
 	stroke-width: 1;
 	fill: none;
 }
