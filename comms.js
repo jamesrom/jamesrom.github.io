@@ -2,7 +2,6 @@ var Comms = (function() {
 	var self = {};
 	var sock;
 	var fmt = d3.format("0,000");
-	var baseTitle = document.title;
 
 	$('#loading-indicator').show();
 
@@ -97,9 +96,6 @@ var Comms = (function() {
 		Chart.render(data);
 		Timer.sync(packet.payload.seconds_left);
 		Stats.render();
-
-		// Update the title of the page to display seconds left.
-		document.title = '[' + packet.payload.seconds_left + 's] ' + baseTitle;
 	}
 
 	self.resize = function() {
