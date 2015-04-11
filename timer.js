@@ -24,17 +24,20 @@ var Timer = (function() {
 
 	function animate() {
 		animating = true;
-		var timer = (timerEnd - moment());
-		timerBar
-			.attr('y', function() {
-				return Chart.yScale(timer / 1000);
-			})
-			.attr('height', function(d, i) {
-				return Chart.yScale(60) - Chart.yScale(timer / 1000);
-			})
-			.attr('fill', flairColor(timer / 1000));
-		$('#timer').text(fmtSeconds(timer / 1000));
-		requestAnimationFrame(animate);
+		// Limit framerate with setTimeout
+		setTimeout(function () {
+			var timer = (timerEnd - moment());
+			timerBar
+				.attr('y', function() {
+					return Chart.yScale(timer / 1000);
+				})
+				.attr('height', function(d, i) {
+					return Chart.yScale(60) - Chart.yScale(timer / 1000);
+				})
+				.attr('fill', flairColor(timer / 1000));
+			$('#timer').text(fmtSeconds(timer / 1000));
+			requestAnimationFrame(animate);
+		}, 1000 / 10); // 10 fps
 	}
 
 	self.resize = function() {
