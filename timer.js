@@ -2,6 +2,7 @@ var Timer = (function() {
 	var self = {};
 	var fmtSeconds = d3.format(".3n");
 	var animating;
+	var baseTitle = document.title;
 	
 	var timerEnd;
 	var timerBar = Chart.svg.append('rect')
@@ -34,6 +35,7 @@ var Timer = (function() {
 			})
 			.attr('fill', flairColor(timer / 1000));
 		$('#timer').text(fmtSeconds(timer / 1000));
+		document.title = '[' + Math.ceil(timer / 1000) + 's] ' + baseTitle;
 		requestAnimationFrame(animate);
 	}
 
