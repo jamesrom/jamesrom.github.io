@@ -37,7 +37,7 @@ var Timer = (function() {
 				.attr('fill', flairColor(timer / 1000));
 			$('#timer').text(fmtSeconds(timer / 1000));
 			requestAnimationFrame(animate);
-		}, 1000 / 10); // 10 fps
+		}, 1000 / 30); // 30 fps
 	}
 
 	self.resize = function() {
