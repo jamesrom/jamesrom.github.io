@@ -15,6 +15,7 @@ var Timer = (function() {
 		.attr('shape-rendering', 'crispEdges');
 
 	self.sync = function(seconds_left) {
+		$('#timer').show();
 		timerEnd = moment().add(seconds_left * 1000);
 
 		updateTitle(seconds_left);
@@ -54,8 +55,8 @@ var Timer = (function() {
 
 		$('#timer')
 			.removeClass('small')
-			.css('left', ($('#stats').offset().left + $('#stats').outerWidth()))
-			.css('top', Chart.margins.top - 4);
+			.css('left', $('#stats').offset().left + $('#stats').outerWidth() + 10)
+			.css('top', Chart.margins.top - 10);
 	}
 	
 	//Used to update timer bar externally when zooming/scrolling
