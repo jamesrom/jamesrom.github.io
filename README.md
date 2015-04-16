@@ -4,7 +4,7 @@ Monitor /r/thebutton. Built in a couple of hours over easter.
 Visit [The Button Monitor](http://jamesrom.github.io)
 
 ## News
-- Animations are limited to 30 frames/sec
+- Animations are limited to 30 frames/sec. Thanks to @CapnRat
 - Current flair color is shown in the favicon
 - Countdown timer is now shown in the title. Thanks to @blixt
 - More statistics and colored gridlines. Thanks to @kaitenzushi
