@@ -21,6 +21,7 @@ var Stats = (function() {
 	self.sum_of_times = 0;
 	self.average_time = 0;
 	self.resets_per_minute = 0;
+    self.median_click_time = 0;
 
 	self.render = function() {
 		_(self)
