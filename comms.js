@@ -2,7 +2,7 @@ var Comms = (function() {
 	var self = {};
 	var sock;
 	var fmt = d3.format("0,000");
-    var clickTimes = [];
+	var clickTimes = [];
 
 	$('#loading-indicator').show();
 
@@ -71,9 +71,9 @@ var Comms = (function() {
 				Stats.total_purples += last.clicks;
 			}
             
-            clickTimes.push(last_time)
-            clickTimes.sort()
-            Stats.median_click_time = clickTimes[clickTimes.length / 2]
+			clickTimes.push(last_time)
+			clickTimes.sort()
+			Stats.median_click_time = clickTimes[clickTimes.length / 2]
 
 			// Update percentages
 			Stats.purple_percentage = "(" + (100.0 * Stats.total_purples / Stats.clicks).toFixed(3) + "%)";
