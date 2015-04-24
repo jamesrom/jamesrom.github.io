@@ -70,10 +70,15 @@ var Comms = (function() {
 			else if (last_time <= 60) {
 				Stats.total_purples += last.clicks;
 			}
-            
-			clickTimes.push(last_time)
-			clickTimes.sort()
-			Stats.median_click_time = clickTimes[clickTimes.length / 2]
+
+			clickTimes.push(last_time);
+			clickTimes.sort();
+			if (clickTimes.length % 2 == 0) {
+				Stats.median_click_time = (clickTimes[clickTimes.length / 2] + clickTimes[clickTimes.length / 2 - 1]) / 2;
+			}
+			else {
+				Stats.median_click_time = clickTimes[(clickTimes.length - 1) / 2];
+			}
 
 			// Update percentages
 			Stats.purple_percentage = "(" + (100.0 * Stats.total_purples / Stats.clicks).toFixed(3) + "%)";
