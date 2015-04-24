@@ -23,4 +23,4 @@ Visit [The Button Monitor](http://jamesrom.github.io)
 - a *tick* is counted every time new data is received
 
 ## Screenshot
-![screenshot](https://cloud.githubusercontent.com/assets/539129/7058312/1ac6ac00-dea3-11e4-96ef-958b8c84a1f2.png)
+![screenshot](http://i.imgur.com/7Kcuzrs.png)
