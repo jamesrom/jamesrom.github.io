@@ -2,7 +2,7 @@ var Comms = (function() {
 	var self = {};
 	var sock;
 	var fmt = d3.format("0,000");
-	var clickTimes = [];
+	var clickTimes = new Array(61);
 
 	$('#loading-indicator').show();
 
@@ -27,6 +27,12 @@ var Comms = (function() {
 	// Use CORS proxy by lezed1 to get the Reddit homepage!
 	redditRequester.open("get", "//cors-unblocker.herokuapp.com/get?url=https%3A%2F%2Fwww.reddit.com%2Fr%2Fthebutton", true);
 	redditRequester.send();
+
+	// Set initial values of clickTimes
+	clickTimes.total = 0;
+	for (var i = 0; i < clickTimes.length; i++) {
+		clickTimes[i] = 0;
+	};
 
 	function tick(evt) {
 		$('#loading-indicator').hide();
@@ -71,13 +77,26 @@ var Comms = (function() {
 				Stats.total_purples += last.clicks;
 			}
 
-			clickTimes.push(last_time);
-			clickTimes.sort();
-			if (clickTimes.length % 2 == 0) {
-				Stats.median_click_time = (clickTimes[clickTimes.length / 2] + clickTimes[clickTimes.length / 2 - 1]) / 2;
+			clickTimes[last_time] += 1;
+			clickTimes.total += 1;
+
+			// Find the median value, or the lower of the two needed to be averaged
+			var current_index = 0;
+			var values_left = Math.floor((clickTimes.total + 1) / 2);
+			while (clickTimes[current_index] < values_left) {
+				values_left -= clickTimes[current_index];
+				current_index += 1;
+			}
+
+			if (clickTimes[current_index] === values_left && (clickTimes.total % 2) === 0) {
+				var next_index = current_index + 1;
+				while (clickTimes[next_index] === 0) {
+					next_index += 1;
+				}
+				Stats.median_click_time = (current_index + next_index) / 2;
 			}
 			else {
-				Stats.median_click_time = clickTimes[(clickTimes.length - 1) / 2];
+				Stats.median_click_time = current_index;
 			}
 
 			// Update percentages
