@@ -3,30 +3,47 @@ var Comms = (function() {
 	var sock;
 	var fmt = d3.format("0,000");
 	var clickTimes = new Array(61);
+	var timeoutId;
 
 	$('#loading-indicator').show();
+	connectToWebsocket();
 
-	var redditRequester = new XMLHttpRequest();
+	function connectToWebsocket() {
+		var redditRequester = new XMLHttpRequest();
 
-	redditRequester.onreadystatechange = function () {
-		if (redditRequester.readyState !== 4) {
-			return;
-		}
-		var websocketURL;
-		if (redditRequester.status === 200) {
+		redditRequester.onreadystatechange = function () {
+			if (redditRequester.readyState !== 4) {
+				return;
+			}
+			var websocketURL;
+			if (redditRequester.status !== 200) {
+				console.error("Something went wrong, reconnecting in 5 seconds!");
+				setTimeout(connectToWebsocket, 5000);
+				return;
+			}
+
 			var regex = /"(wss:\/\/wss\.redditmedia\.com\/thebutton\?h=[^"]*)"/g;
 			websocketURL = regex.exec(redditRequester.responseText)[1];
-		}
+			
+			console.log("Connecting to: " + websocketURL);
+			sock = new WebSocket(websocketURL);
+			sock.onmessage = tick;
+		};
+		// Use CORS proxy by lezed1 to get the Reddit homepage!
+		redditRequester.open("get", "//cors-unblocker.herokuapp.com/get?url=https%3A%2F%2Fwww.reddit.com%2Fr%2Fthebutton", true);
+		redditRequester.send();
+	}
 
-		websocketURL = websocketURL || "wss://wss.redditmedia.com/thebutton?h=7f66bf82878e6151f7688ead7085eb63a0baff0b&e=1428621271";
-		
-		console.log("Connecting to: " + websocketURL);
-		sock = new WebSocket(websocketURL);
-		sock.onmessage = tick;
-	};
-	// Use CORS proxy by lezed1 to get the Reddit homepage!
-	redditRequester.open("get", "//cors-unblocker.herokuapp.com/get?url=https%3A%2F%2Fwww.reddit.com%2Fr%2Fthebutton", true);
-	redditRequester.send();
+	function reconnectToWebsocket() {
+		sock.close();
+
+		data.push({seconds_left: -.01});
+		Chart.render(data);
+		Timer.sync("0");
+		$('#loading-indicator').show();
+
+		connectToWebsocket();
+	}
 
 	// Set initial values of clickTimes
 	clickTimes.total = 0;
@@ -45,18 +62,23 @@ var Comms = (function() {
 			return;
 		}
 
+		// Reconnect if no information is recieved for 10 seconds.
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout(reconnectToWebsocket, 10000);
+
 		packet.payload.now = moment(packet.payload.now_str + " 0000", "YYYY-MM-DD-HH-mm-ss Z");
 		Stats.lag = d3.format("0,000")(packet.payload.now - moment());
 		packet.payload.participants = parseInt(packet.payload.participants_text.replace(/[^0-9]/g, ''))
 
 		var last = _.last(data);
-		if (data.length > 0 && packet.payload.seconds_left >= last.seconds_left) {
+		if (data.length > 0 && packet.payload.seconds_left >= last.seconds_left && last.seconds_left >= 0) {
 			last.is_click = true;
 			last.clicks = packet.payload.participants - last.participants;
 			Stats.clicks += last.clicks;
 
 			var total_resets = _.filter(data, 'is_click').length;
 			var last_time = last.seconds_left;
+
 			// Update color stats
 			if (last_time <= 11) {
 				Stats.total_reds += last.clicks;
@@ -118,6 +140,9 @@ var Comms = (function() {
 
 			// Resets per minute
 			Stats.resets_per_minute = (60.0 * total_resets / data.length).toFixed(3);
+		}
+		else if (data.length > 0 && last.seconds_left < 0) {
+			last.is_click = true;
 		}
 		data.push(packet.payload);
 		Stats.ticks = fmt(data.length);

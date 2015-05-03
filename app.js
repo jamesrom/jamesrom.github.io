@@ -32,8 +32,11 @@ function flairColor(seconds) {
 	if (seconds > 11) {
 		return '#e59500';
 	}
+	if (seconds >=0) {
+		return '#e50000';
+	}
 
-	return '#e50000';
+	return '#FFFFFF';
 }
 
 function resize() {

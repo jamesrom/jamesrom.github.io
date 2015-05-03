@@ -18,7 +18,12 @@ var Timer = (function() {
 		$('#timer').show();
 		timerEnd = moment().add(seconds_left * 1000);
 
-		updateTitle(seconds_left);
+		if (seconds_left >= 0) {
+			updateTitle(seconds_left);
+		}
+		else {
+			updateTitle("??");
+		}
 		updateBar();
 		
 		if (!animating) {
@@ -31,15 +36,31 @@ var Timer = (function() {
 		// Limit framerate with setTimeout
 		setTimeout(function () {
 			var timer = (timerEnd - moment());
-			timerBar
-				.attr('y', function() {
+			timerBar.attr('fill', flairColor(timer / 1000));
+			if (timer >= 0) {
+				timerBar.attr('y', function() {
 					return Chart.yScale(timer / 1000);
-				})
-				.attr('height', function(d, i) {
+				});
+			}
+			else {
+				timerBar.attr('y', function() {
+					return Chart.yScale(0);
+				});
+			}
+
+			if (timer >= 0) {
+				$('#timer').text(fmtSeconds(timer / 1000));
+				timerBar.attr('height', function(d, i) {
 					return Chart.yScale(60) - Chart.yScale(timer / 1000);
 				})
-				.attr('fill', flairColor(timer / 1000));
-			$('#timer').text(fmtSeconds(timer / 1000));
+				}
+			else {
+				$('#timer').text("??");
+				timerBar.attr('height', function(d, i) {
+					return Chart.yScale(60);
+				})
+			}
+			;
 			requestAnimationFrame(animate);
 		}, 1000 / 30); // 30 fps
 	}
