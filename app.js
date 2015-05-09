@@ -16,6 +16,12 @@ function init() {
 	resize();
 }
 
+$("#sorted").change(function(element) {
+	Chart.sorted= element.currentTarget.checked;
+	Chart.render(data);
+});
+
+
 function flairColor(seconds) {
 	if (seconds > 51) {
 		return '#820080';
@@ -66,7 +72,7 @@ function mouseWheel(e) {
 function mouseDown(e) {
 	//e = window.event || e;
 	mouseX = e.pageX;
-	
+
 	//Bind scrolling functions
 	$(window).on('mousemove', mouseMove)
 			 .on('mouseup', mouseUp);
@@ -75,11 +81,11 @@ function mouseDown(e) {
 function mouseMove(e) {
 	mouseDelta = mouseX - e.pageX;
 	mouseX = e.pageX;
-	
+
 	Chart.scroll(mouseDelta);
 	Chart.render(data);
 	Timer.updateBar();
-	
+
 	e.preventDefault();
 }
 

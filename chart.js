@@ -11,6 +11,8 @@ var Chart = (function() {
 		return $('#chart').width() - self.margins.left - self.margins.right;
 	};
 
+	self.sorted = false;
+
 	var svg = d3.select('#chart')
 		.append('svg:svg')
 		.attr({width: '100%', height: '100%'})
@@ -46,7 +48,7 @@ var Chart = (function() {
 				+ '<div>Time Stamp: ' + d.now.format("YYYY-MM-DD HH:mm:ss") + '</div>'
 				+ '<div>Clicks: ' + d.clicks + '</div>';
 		});
-	
+
 	var zoomLvl = 0;
 	var scrollLvl = 0;
 
@@ -96,7 +98,27 @@ var Chart = (function() {
 	self.xScale = xScale;
 	self.yScale = yScale;
 
+
+	function sortClicksBySecondsLeft(e1, e2) {
+		return e1.seconds_left - e2.seconds_left;
+	}
+
+	function copySortedArray(arr) {
+		var s = [];
+		arr.forEach(function(e) {
+			s.push(e);
+		});
+
+		s.sort(sortClicksBySecondsLeft);
+		return s;
+	}
+
+
 	self.render = function(data) {
+		if (self.sorted) {
+			data = copySortedArray(data);
+		}
+
 		var clicks = _.filter(data, 'is_click');
 		Stats.resets = clicks.length;
 
@@ -142,7 +164,7 @@ var Chart = (function() {
 
 		rect.exit()
 			.remove();
-		
+
 		//Put axis in front of bars in case they overlap
 		svg.select('.y.axis').moveToFront();
 	}
@@ -198,23 +220,23 @@ var Chart = (function() {
 	self.zoom = function(delta, pos) {
 		//Different zoom depending on level (accelerate zoom every time you zoom out by 50)
 		var v = delta * Math.floor((Stats.resets - zoomLvl)/50) + delta;
-		
+
 		zoomLvl += v;
 		if (zoomLvl < 0) { zoomLvl = 0; }
 		if (zoomLvl > Stats.resets) { zoomLvl = Stats.resets; }
-		
+
 		//Adjust scrolling to center on mouse
 		scrollLvl += pos / self.width() * v;
 		if (scrollLvl < 0) { scrollLvl = 0; }
 		if (scrollLvl > zoomLvl) { scrollLvl = zoomLvl; }
 	}
-	
+
 	self.scroll = function(dist) {
 		//Adjust scrolling speed according to domain
 		scrollLvl += dist / self.width() * (xScale.domain()[1] - xScale.domain()[0]);
 		if (scrollLvl < 0) { scrollLvl = 0; }
 		if (scrollLvl > zoomLvl) { scrollLvl = zoomLvl; }
 	}
-	
+
 	return self;
 }());

@@ -3,7 +3,7 @@
 	<meta name="keywords" content="thebutton, button, reddit button, redguard">
 	<meta name="description" content="Monitor the button. A simple chart for /r/thebutton">
 	<meta name="author" content="James Romeril">
-	
+
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-touch-fullscreen" content="yes">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
@@ -20,6 +20,7 @@
 	<div class="container-fluid">
 		<div id="chart" class="col-md-12"></div>
 		<div id="stats">
+			<div>Sort by seconds: <input type="checkbox" id="sorted"></div>
 			<div>Started: <span class="start"></span></div>
 			<div>Time Difference: <span class="lag"></span>ms</div>
 			<div>Participants: <span class="participants"></span></div>
@@ -49,7 +50,7 @@
 			Visit <a href="http://jamesromeril.com/">jamesromeril.com</a>
 		</div>
 	</div>
-	
+
 	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.6.0/lodash.min.js"></script>
@@ -58,7 +59,7 @@
 	<!-- Used to get valid "mousewheel" events in Firefox -->
 	<script src="jQuery_mousewheel_3_1_12.js"></script>
 	<script src="d3-tip.js"></script>
-	
+
 	<script src="app.js"></script>
 	<script src="comms.js"></script>
 	<script src="chart.js"></script>
