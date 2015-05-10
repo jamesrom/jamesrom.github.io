@@ -100,7 +100,7 @@ var Chart = (function() {
 
 
 	function sortClicksBySecondsLeft(e1, e2) {
-		return e1.seconds_left - e2.seconds_left;
+		return e2.seconds_left - e1.seconds_left;
 	}
 
 	function copySortedArray(arr) {
