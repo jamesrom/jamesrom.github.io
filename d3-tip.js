@@ -59,8 +59,8 @@
       while(i--) nodel.classed(directions[i], false)
       coords = direction_callbacks.get(dir).apply(this)
       nodel.classed(dir, true).style({
-        top: Math.max((coords.top +  poffset[0]) + scrollTop, 0) + 'px',
-        left: (coords.left + poffset[1]) + scrollLeft + 'px'
+        top: Math.max((coords.top +  poffset[0]) + scrollTop, -12) + 'px',
+        left: Math.max((coords.left + poffset[1]) + scrollLeft, -60) + 'px'
       })
 
       return tip
