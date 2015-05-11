@@ -150,6 +150,8 @@ var Comms = (function() {
 		Chart.render(data);
 		Timer.sync(packet.payload.seconds_left);
 		Stats.render();
+		$('#settings').show();
+		Settings.render();
 	}
 
 	self.resize = function() {

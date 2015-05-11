@@ -16,12 +16,6 @@ function init() {
 	resize();
 }
 
-$("#sorted").change(function(element) {
-	Chart.sorted= element.currentTarget.checked;
-	Chart.render(data);
-});
-
-
 function flairColor(seconds) {
 	if (seconds > 51) {
 		return '#820080';
@@ -49,6 +43,7 @@ function resize() {
 	Chart.resize();
 	Stats.resize();
 	Timer.resize();
+	Settings.resize();
 	Comms.resize();
 
 	if ($(window).width() < 400) {

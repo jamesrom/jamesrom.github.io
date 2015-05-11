@@ -20,7 +20,6 @@
 	<div class="container-fluid">
 		<div id="chart" class="col-md-12"></div>
 		<div id="stats">
-			<div>Sort by seconds: <input type="checkbox" id="sorted"></div>
 			<div>Started: <span class="start"></span></div>
 			<div>Time Difference: <span class="lag"></span>ms</div>
 			<div>Participants: <span class="participants"></span></div>
@@ -39,6 +38,13 @@
 			<div>Red clicks: <span id="red-stats"><span class="total_reds"></span> <span class="red_percentage"></span></span></div>
 		</div>
 		<div id="timer">
+		</div>
+		<div id="settings">
+			<div>Show settings <input type="checkbox" id="collapse-settings"></div>
+			<div id="settings-menu">
+				<div>Sort by seconds: <input type="checkbox" id="sorted"></div>
+				<div><input type="button" value="Clear data" onclick="Settings.clear()"></div>
+			</div>
 		</div>
 		<div class="footer twitter">
 			Follow <a href="https://twitter.com/jamesrom">@jamesrom</a>
@@ -65,6 +71,7 @@
 	<script src="chart.js"></script>
 	<script src="timer.js"></script>
 	<script src="stats.js"></script>
+	<script src="settings.js"></script>
 	<script>
 		$(init);
 	</script>
