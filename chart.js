@@ -104,9 +104,8 @@ var Chart = (function() {
 	}
 
 	function copySortedArray(arr) {
-		var s = [];
-		arr.forEach(function(e) {
-			if (e.seconds_left > 0) s.push(e);
+		var s = arr.filter(function(e) {
+			return !!e.clicks && e.clicks > 0;
 		});
 
 		s.sort(sortClicksBySecondsLeft);
