@@ -114,14 +114,14 @@ var Chart = (function() {
 				return xScale(i);
 			})
 			.attr('y', function(d, i) {
-				if (d.seconds_left == 60) {return yScale(59.5); }
+			    if (d.seconds_left == 60) {return yScale(60) - 3; }
 				else {return yPixel(d); }
 			})
 			.attr('width', function(d, i) {
 				return xScale(i+1) - xScale(i);
 			})
 			.attr('height', function(d, i) {
-				if (d.seconds_left == 60){ return yScale(0.5); }
+				if (d.seconds_left == 60){ return 3; }
 				else {return yScale(60) - yPixel(d); }
 			})
 			.attr('fill', flair);
