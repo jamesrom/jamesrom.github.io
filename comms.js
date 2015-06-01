@@ -71,7 +71,7 @@ var Comms = (function() {
 		packet.payload.participants = parseInt(packet.payload.participants_text.replace(/[^0-9]/g, ''))
 
 		var last = _.last(data);
-		if (data.length > 0 && packet.payload.seconds_left >= last.seconds_left && last.seconds_left >= 0) {
+		if (data.length > 0 && packet.payload.seconds_left >= last.seconds_left && last.seconds_left >= 0 && packet.payload.participants !== last.participants) {
 			last.is_click = true;
 			last.clicks = packet.payload.participants - last.participants;
 			Stats.clicks += last.clicks;
