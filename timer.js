@@ -66,17 +66,19 @@ var Timer = (function() {
 	}
 
 	self.resize = function() {
+		var statsView = $('#stats');
+
 		if ($(window).width() < 400) {
 			$('#timer')
 				.addClass('small')
-				.css('left', $('#stats').offset().left)
-				.css('top', $('#stats').offset().top + $('#stats').outerHeight());
+				.css('left', statsView.offset().left)
+				.css('top', statsView.offset().top + statsView.outerHeight() + 5);
 			return;
 		}
 
 		$('#timer')
 			.removeClass('small')
-			.css('left', $('#stats').offset().left + $('#stats').outerWidth() + 10)
+			.css('left', statsView.offset().left + statsView.outerWidth() + 10)
 			.css('top', Chart.margins.top - 10);
 	}
 	

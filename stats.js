@@ -41,8 +41,13 @@ var Stats = (function() {
 
 	self.resize = function() {
 		if ($(window).width() < 400) {
-			$('#stats').addClass('small');
+			$('#stats')
+				.addClass('small')
+				.css('left', ($('#chart').offset().left))
+				.css('top', Chart.margins.top - 5);
+			return;
 		}
+
 		$('#stats')
 			.removeClass('small')
 			.css('left', ($('#chart').offset().left))

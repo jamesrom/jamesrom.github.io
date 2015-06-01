@@ -81,8 +81,7 @@ body {
 	text-align: left;
 	font-size: 12px;
 	font-family: Consolas, monaco, monospace;
-	padding: 2px 6px;
-	margin-left: 4px;
+	padding: 4px;
 	display: none;
 	border: 1px solid #FFF;
 	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
@@ -93,7 +92,7 @@ body {
 }
 
 #settings.small {
-	padding: 0;
+	padding: 2px;
 	margin-top: 0;
 }
 
