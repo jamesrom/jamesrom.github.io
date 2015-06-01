@@ -36,7 +36,8 @@ var Stats = (function() {
 
 		self.resize();
 		Timer.resize();
-	}
+		Settings.resize();
+	};
 
 	self.resize = function() {
 		if ($(window).width() < 400) {

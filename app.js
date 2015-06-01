@@ -43,6 +43,7 @@ function resize() {
 	Chart.resize();
 	Stats.resize();
 	Timer.resize();
+	Settings.resize();
 	Comms.resize();
 
 	if ($(window).width() < 400) {
@@ -66,7 +67,7 @@ function mouseWheel(e) {
 function mouseDown(e) {
 	//e = window.event || e;
 	mouseX = e.pageX;
-	
+
 	//Bind scrolling functions
 	$(window).on('mousemove', mouseMove)
 			 .on('mouseup', mouseUp);
@@ -75,11 +76,11 @@ function mouseDown(e) {
 function mouseMove(e) {
 	mouseDelta = mouseX - e.pageX;
 	mouseX = e.pageX;
-	
+
 	Chart.scroll(mouseDelta);
 	Chart.render(data);
 	Timer.updateBar();
-	
+
 	e.preventDefault();
 }
 
