@@ -3,7 +3,7 @@
 	<meta name="keywords" content="thebutton, button, reddit button, redguard">
 	<meta name="description" content="Monitor the button. A simple chart for /r/thebutton">
 	<meta name="author" content="James Romeril">
-	
+
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-touch-fullscreen" content="yes">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
@@ -39,6 +39,20 @@
 		</div>
 		<div id="timer">
 		</div>
+		<div id="settings">
+			<div id="collapse-settings">
+			<!-- Settings Cog, from iconic -->
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 8 8">
+					<path d="M3.5 0l-.5 1.19c-.1.03-.19.08-.28.13l-1.19-.5-.72.72.5 1.19c-.05.1-.09.18-.13.28l-1.19.5v1l1.19.5c.04.1.08.18.13.28l-.5 1.19.72.72 1.19-.5c.09.04.18.09.28.13l.5 1.19h1l.5-1.19c.09-.04.19-.08.28-.13l1.19.5.72-.72-.5-1.19c.04-.09.09-.19.13-.28l1.19-.5v-1l-1.19-.5c-.03-.09-.08-.19-.13-.28l.5-1.19-.72-.72-1.19.5c-.09-.04-.19-.09-.28-.13l-.5-1.19h-1zm.5 2.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5z"/>
+				</svg>
+			</div>
+			<div id="settings-menu">
+				<div>
+					<label> Sort by seconds: <input type="checkbox" id="sorted"></label>
+				</div>
+				<div><input type="button" value="Clear data" onclick="Settings.clear()"></div>
+			</div>
+		</div>
 		<div class="footer twitter">
 			Follow <a href="https://twitter.com/jamesrom">@jamesrom</a>
 		</div>
@@ -49,7 +63,7 @@
 			Visit <a href="http://jamesromeril.com/">jamesromeril.com</a>
 		</div>
 	</div>
-	
+
 	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.6.0/lodash.min.js"></script>
@@ -58,12 +72,13 @@
 	<!-- Used to get valid "mousewheel" events in Firefox -->
 	<script src="jQuery_mousewheel_3_1_12.js"></script>
 	<script src="d3-tip.js"></script>
-	
+
 	<script src="app.js"></script>
 	<script src="comms.js"></script>
 	<script src="chart.js"></script>
 	<script src="timer.js"></script>
 	<script src="stats.js"></script>
+	<script src="settings.js"></script>
 	<script>
 		$(init);
 	</script>
