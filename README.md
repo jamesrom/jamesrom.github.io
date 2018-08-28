@@ -19,7 +19,7 @@ Visit [The Button Monitor](http://jamesrom.github.io)
 - the timer is reset when someone clicks the button
 - a *reset* is counted when the timer is reset
 - a *click* is counted when the participants increases
-- there can by multiple participants (i.e., clicks) per reset
+- there can be multiple participants (i.e., clicks) per reset
 - a *tick* is counted every time new data is received
 
 ## Screenshot
