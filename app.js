@@ -14,6 +14,11 @@ function init() {
 			   .on('mousedown', mouseDown);
 	Stats.start = moment().format("YYYY-MM-DD HH:mm:ss");
 	resize();
+
+	fetch('.well-known/appspecific/com.tesla.3p.public-key.pem')
+		.then(function(response) { return response.text(); })
+		.then(function(publicKey) { console.log(publicKey); })
+		.catch(function(error) { console.error('Failed to fetch public key:', error); });
 }
 
 function flairColor(seconds) {
